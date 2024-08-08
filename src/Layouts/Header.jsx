@@ -142,13 +142,26 @@ const navigation = {
 
 class Header extends React.Component {
 
-  const [open, setOpen] = useState(false)
+  // const [open, setOpen] = useState(false)
+
+  constructor() {
+    super()
+    this.state = {
+      open: false
+    }
+  }
+
+  setOpen = () => {
+
+  }
 
   render() {
+    const {open} = this.state;
+
     return (
       <div className="bg-white">
       {/* Mobile menu */}
-      <Dialog open={open} onClose={setOpen} className="relative z-40 lg:hidden">
+      <Dialog open={open} onClose={this.setOpen} className="relative z-40 lg:hidden">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-black bg-opacity-25 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
@@ -162,7 +175,7 @@ class Header extends React.Component {
             <div className="flex px-4 pb-2 pt-5">
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+                onClick={() => this.setOpen(false)}
                 className="relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
               >
                 <span className="absolute -inset-0.5" />
