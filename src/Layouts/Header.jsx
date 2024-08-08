@@ -1,8 +1,12 @@
 import React from 'react';
+import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom';
-import {  Dialog } from 'react';
+import { Dialog } from 'react';
+
+const [open, setOpen] = useState(false)
 
 class Header extends React.Component {
+
       render() {
         <div className="bg-white">
       {/* Mobile menu */}
