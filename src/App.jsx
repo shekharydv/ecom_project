@@ -1,22 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Header from "./pages/Header";
 import Product from "./pages/Product";
-import ProductDetails from "./pages/ProductDetails";
+
 
 function App() {
+  const [cartCount, setCartCount] = useState(0);
+
+  const handleAddToCart = () => {
+    setCartCount((prevCount) => prevCount + 1);
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-       
-        <Route path="/productDetails" element={<ProductDetails />} />
-      </Routes>
-    </Router>
+    <div>
+      <Header cartCount={cartCount} />
+      <Product onAddToCart={handleAddToCart} />
+    </div>
   );
 }
 
