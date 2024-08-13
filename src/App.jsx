@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./pages/Header";
 import Product from "./pages/Product";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+
 
 function App() {
-  // Initialize the cart count and items from localStorage if they exist
   const [cartCount, setCartCount] = useState(() => {
     const savedCartCount = localStorage.getItem("cartCount");
     return savedCartCount ? parseInt(savedCartCount, 10) : 0;
@@ -15,16 +16,17 @@ function App() {
     return !!localStorage.getItem("token");
   });
 
+  const [username, setUsername] = useState(() => {
+    return localStorage.getItem("username") || "";
+  });
+
   const [cartItems, setCartItems] = useState(() => {
     const savedCartItems = localStorage.getItem("cartItems");
     return savedCartItems ? JSON.parse(savedCartItems) : [];
   });
 
   useEffect(() => {
-    // Save cart count to localStorage whenever it changes
     localStorage.setItem("cartCount", cartCount);
-
-    // Save cart items to localStorage whenever they change
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartCount, cartItems]);
 
@@ -41,19 +43,37 @@ function App() {
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = (username) => {
     setIsLoggedIn(true);
-    // Save the login state to localStorage
+    setUsername(username);
     localStorage.setItem("token", "user-token");
+    localStorage.setItem("username", username);
+    window.location.href = "/";
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUsername("");
+    setCartCount(0);
+    setCartItems([]);
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.setItem("cartCount", "0");
+    localStorage.setItem("cartItems", "[]");
     window.location.href = "/";
   };
 
   return (
     <Router>
-      <Header cartCount={cartCount} />
+      <Header
+        cartCount={cartCount}
+        username={username}
+        onLogout={handleLogout} // Pass handleLogout to the Header component
+      />
       <Routes>
         <Route path="/" element={<Product onAddToCart={handleAddToCart} />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/register" element={<Register/>} />
       </Routes>
     </Router>
   );

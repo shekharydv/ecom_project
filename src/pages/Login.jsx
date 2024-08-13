@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 class Login extends React.Component {
   constructor(props) {
@@ -26,9 +26,8 @@ class Login extends React.Component {
       .then((res) => res.json())
       .then((json) => {
         if (json.token) {
-          // Store the token in localStorage
           localStorage.setItem("token", json.token);
-          this.props.onLogin();
+          this.props.onLogin(this.state.username);  // Pass the username
         } else {
           this.setState({ error: "Invalid login credentials" });
         }
@@ -37,6 +36,7 @@ class Login extends React.Component {
         console.error(error);
       });
   };
+  
 
   render() {
     return (

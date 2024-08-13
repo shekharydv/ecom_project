@@ -24,12 +24,11 @@ class Header extends React.Component {
   };
 
   render() {
-    const { cartCount } = this.props;
+    const { cartCount, username, onLogout } = this.props;
     const { open } = this.state;
 
     return (
       <div className="bg-white">
-        {/* Mobile menu */}
         <Dialog open={open} onClose={() => this.setOpen(false)} className="relative z-40 lg:hidden">
           <div className="fixed inset-0 z-40 flex">
             <Dialog.Panel className="relative flex w-full max-w-xs transform flex-col overflow-y-auto bg-white pb-12 shadow-xl">
@@ -44,9 +43,8 @@ class Header extends React.Component {
                 </button>
               </div>
 
-              {/* Links */}
               <TabGroup className="mt-2">
-                {/* Add your navigation logic here */}
+               
               </TabGroup>
             </Dialog.Panel>
           </div>
@@ -82,15 +80,31 @@ class Header extends React.Component {
                 </div>
 
                 <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Sign in
-                  </Link>
-                  <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
-                  <Link to="/register" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Create account
-                  </Link>
-                </div>
+                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                    {username ? (
+                      <>
+                        <span className="text-sm font-medium text-gray-700">
+                          Welcome, {username}
+                        </span>
+                        <button
+                          onClick={onLogout}
+                          className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                        >
+                          Logout
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                          Sign in
+                        </Link>
+                        <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
+                        <Link to="/register" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                          Create account
+                        </Link>
+                      </>
+                    )}
+                  </div>
                 </div>
 
                 <div className="ml-auto flex items-center">
