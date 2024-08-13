@@ -36,7 +36,7 @@ function App() {
         setCartItems((prevItems) => [...prevItems, productId]);
         setCartCount((prevCount) => prevCount + 1);
       } else {
-        alert("This product is already in the cart.");
+        alert("Product Cart ME hai.");
       }
     } else {
       window.location.href = "/login";
