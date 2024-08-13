@@ -20,8 +20,8 @@ class Product extends React.Component {
       });
   }
 
-  handleAddToCart = () => {
-    this.props.onAddToCart();
+  handleAddToCart = (productId) => {
+    this.props.onAddToCart(productId);
   };
 
   render() {
@@ -53,7 +53,7 @@ class Product extends React.Component {
                 </span>
               </div>
               <button
-                onClick={this.handleAddToCart}
+                onClick={() => this.handleAddToCart(product.id)}
                 type="button"
                 className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80"
               >

@@ -26,6 +26,8 @@ class Login extends React.Component {
       .then((res) => res.json())
       .then((json) => {
         if (json.token) {
+          // Store the token in localStorage
+          localStorage.setItem("token", json.token);
           this.props.onLogin();
         } else {
           this.setState({ error: "Invalid login credentials" });

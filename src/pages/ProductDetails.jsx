@@ -4,25 +4,7 @@ class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [
-      /*  {
-          title: "shekhar",
-          price: "2000",
-          desc: "shekharisthis",
-        },
-
-        {
-          title: "bhavesh",
-          price: "2300",
-          desc: "shek3bjkddharisthis",
-        },
-
-        {
-          title: "Rahul",
-          price: "2307s0",
-          desc: "shek3bjkddharisthis",
-        },*/
-      ],
+      products: [ ],
       cartCount: 0,
     };
 
@@ -52,7 +34,6 @@ class ProductDetails extends React.Component {
   };
 
   render() {
-    const {products, cartCount } = this.state;
 
     
     return (
