@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./pages/Header";
-import Product from "./pages/Product";
+import Product from "./component/Product";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
@@ -11,15 +11,16 @@ function App() {
     const savedCartCount = localStorage.getItem("cartCount");
     return savedCartCount ? parseInt(savedCartCount, 10) : 0;
   });
-
+  
+//  token key in local storage
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return !!localStorage.getItem("token");
   });
-
+// userName in local Storage
   const [username, setUsername] = useState(() => {
     return localStorage.getItem("username") || "";
   });
-
+//  cart data store in localstorage 
   const [cartItems, setCartItems] = useState(() => {
     const savedCartItems = localStorage.getItem("cartItems");
     return savedCartItems ? JSON.parse(savedCartItems) : [];
@@ -29,6 +30,8 @@ function App() {
     localStorage.setItem("cartCount", cartCount);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartCount, cartItems]);
+
+  //perticular id is taking and adding in cart if already there then showing alert
 
   const handleAddToCart = (productId) => {
     if (isLoggedIn) {
@@ -51,6 +54,8 @@ function App() {
     window.location.href = "/";
   };
 
+
+  // if logout all the data remove from localstorage 
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUsername("");

@@ -7,7 +7,7 @@ class Product extends React.Component {
       products: [],
     };
   }
-
+  
   componentDidMount() {
     this.getProducts();
   }
