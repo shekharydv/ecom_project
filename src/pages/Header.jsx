@@ -9,6 +9,7 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 class Header extends React.Component {
   constructor(props) {
@@ -78,6 +79,18 @@ class Header extends React.Component {
                       className="h-8 w-auto"
                     />
                   </a>
+                </div>
+
+                <div className="ml-auto flex items-center">
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                  <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    Sign in
+                  </Link>
+                  <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
+                  <Link to="/register" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    Create account
+                  </Link>
+                </div>
                 </div>
 
                 <div className="ml-auto flex items-center">
