@@ -51,14 +51,14 @@ const Header = ({ cartCount, username, onLogout }) => {
               </button>
 
               <div className="ml-4 flex lg:ml-0">
-                <a href="#">
+                <Link to="/">
                   <span className="sr-only">Your Company</span>
                   <img
                     alt=""
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     className="h-8 w-auto"
                   />
-                </a>
+                </Link>
               </div>
 
               <div className="ml-auto flex items-center">
@@ -121,7 +121,7 @@ const Header = ({ cartCount, username, onLogout }) => {
                   </a>
                 </div>
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <Link to="/Cart" className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
                       aria-hidden="true"
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
@@ -130,7 +130,7 @@ const Header = ({ cartCount, username, onLogout }) => {
                       {cartCount}
                     </span>
                     <span className="sr-only">items in cart</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

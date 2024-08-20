@@ -9,6 +9,8 @@ import MainLayout from "./Layouts/MainLayout";
 import Product from "./pages/Product";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Cart from "./pages/Cart";
+
 
 function App() {
   const [cartCount, setCartCount] = useState(() => {
@@ -85,6 +87,7 @@ function App() {
           <Route index element={<Product />} />
           <Route path="login" element={<Login onLogin={handleLogin} />} />
           <Route path="register" element={<Register />} />
+          <Route path="cart" element={<Cart/>} />
         </Route>
       </Routes>
     </Router>
