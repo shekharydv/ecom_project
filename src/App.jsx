@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -10,6 +11,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
 function App() {
   const [cartCount, setCartCount] = useState(() => {
@@ -111,9 +114,19 @@ function App() {
           }
         >
           <Route index element={<Product />} />
-          <Route path="login" element={<Login onLogin={handleLogin} />} />
-          <Route path="register" element={<Register />} />
-          <Route path="cart" element={<Cart cartItems={cartItems} />} />
+
+          {/* Public Routes */}
+          <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
+            <Route path="login" element={<Login onLogin={handleLogin} />} />
+            <Route path="register" element={<Register />} />
+          </Route>
+
+          {/* Private Routes */}
+          <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+            <Route path="cart" element={<Cart cartItems={cartItems} />} />
+          </Route>
+
+          {/* Wishlist is a public route */}
           <Route path="wishlist" element={<Wishlist wishlistItems={wishlistItems} />} />
         </Route>
       </Routes>
