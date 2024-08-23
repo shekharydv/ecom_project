@@ -2,7 +2,7 @@ import React from "react";
 import { useOutletContext } from "react-router-dom";
 
 const Product = () => {
-  const { handleAddToCart } = useOutletContext();
+  const { handleAddToCart, handleAddToWishlist } = useOutletContext();
   const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {
@@ -10,6 +10,9 @@ const Product = () => {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
       });
   }, []);
 
@@ -26,13 +29,23 @@ const Product = () => {
             <h1 className="inline-flex items-center text-lg font-semibold">
               {product.title}
             </h1>
-            <button
-              onClick={() => handleAddToCart(product.id)}
-              type="button"
-              className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80"
-            >
-              Add to Cart
-            </button>
+            <p className="mt-2 text-gray-500">${product.price}</p>
+            <div className="mt-4 space-y-2">
+              <button
+                onClick={() => handleAddToCart(product.id)}
+                type="button"
+                className="w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80"
+              >
+                Add to Cart
+              </button>
+              <button
+                onClick={() => handleAddToWishlist(product.id)}
+                type="button"
+                className="w-full rounded-sm bg-red-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-400"
+              >
+                Add to Wishlist
+              </button>
+            </div>
           </div>
         </div>
       ))}

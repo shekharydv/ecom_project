@@ -1,14 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Outlet } from "react-router-dom";
 
 const MainLayout = ({
   username,
   cartCount,
+  wishlistCount,
   onLogout,
   onAddToCart,
+  onAddToWishlist,
   onLogin,
 }) => {
   const navigate = useNavigate();
@@ -21,6 +22,10 @@ const MainLayout = ({
     onAddToCart(productId, navigate);
   };
 
+  const handleAddToWishlist = (productId) => {
+    onAddToWishlist(productId);
+  };
+
   const handleLogin = (username) => {
     onLogin(username, navigate);
   };
@@ -30,10 +35,11 @@ const MainLayout = ({
       <Header
         username={username}
         cartCount={cartCount}
+        wishlistCount={wishlistCount}
         onLogout={handleLogoutClick}
       />
       <main>
-        <Outlet context={{ handleAddToCart, handleLogin }} />
+        <Outlet context={{ handleAddToCart, handleAddToWishlist, handleLogin }} />
       </main>
       <Footer />
     </div>
