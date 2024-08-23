@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
+import ProductDetails from "./pages/ProductDetails";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 
@@ -119,6 +120,13 @@ function App() {
           <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
             <Route path="login" element={<Login onLogin={handleLogin} />} />
             <Route path="register" element={<Register />} />
+            <Route
+              path="product/:productId"
+              element={
+                <ProductDetails handleAddToCart={handleAddToCart} />
+              }
+            />
+          </Route>
           </Route>
 
           {/* Private Routes */}
@@ -128,7 +136,7 @@ function App() {
 
           {/* Wishlist is a public route */}
           <Route path="wishlist" element={<Wishlist wishlistItems={wishlistItems} />} />
-        </Route>
+          
       </Routes>
     </Router>
   );

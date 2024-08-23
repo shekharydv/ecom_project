@@ -1,7 +1,10 @@
 import React from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext }  from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const Product = () => {
+  const navigate = useNavigate();
   const { handleAddToCart, handleAddToWishlist } = useOutletContext();
   const [products, setProducts] = React.useState([]);
 
@@ -16,10 +19,14 @@ const Product = () => {
       });
   }, []);
 
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`); 
+  };
+
   return (
     <div className="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4">
       {products.map((product) => (
-        <div key={product.id} className="rounded-md border">
+        <div key={product.id} className="rounded-md border"  onClick={() => handleProductClick(product.id)}>
           <img
             src={product.image}
             alt={product.title}
