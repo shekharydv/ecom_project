@@ -1,10 +1,5 @@
-// src/App.jsx
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
 import Product from "./pages/Product";
 import Login from "./pages/Login";
@@ -114,29 +109,23 @@ function App() {
             />
           }
         >
-          <Route index element={<Product />} />
-
+          
           {/* Public Routes */}
+          <Route index element={<Product />} />
+          <Route path="product/:productId" element={<ProductDetails />} />
+          <Route path="wishlist" element={<Wishlist wishlistItems={wishlistItems} />} />
+          
+          {/* Public Routes that require to be non-authenticated */}
           <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
             <Route path="login" element={<Login onLogin={handleLogin} />} />
             <Route path="register" element={<Register />} />
-            <Route
-              path="product/:productId"
-              element={
-                <ProductDetails handleAddToCart={handleAddToCart} />
-              }
-            />
-          </Route>
           </Route>
 
           {/* Private Routes */}
           <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
             <Route path="cart" element={<Cart cartItems={cartItems} />} />
           </Route>
-
-          {/* Wishlist is a public route */}
-          <Route path="wishlist" element={<Wishlist wishlistItems={wishlistItems} />} />
-          
+        </Route>
       </Routes>
     </Router>
   );

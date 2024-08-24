@@ -4,7 +4,7 @@ import { Dialog, TabGroup } from "@headlessui/react";
 import {
   Bars3Icon,
   ShoppingBagIcon,
-  HeartIcon, // Import HeartIcon for wishlist
+  HeartIcon, 
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";

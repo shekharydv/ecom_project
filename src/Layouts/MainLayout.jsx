@@ -1,4 +1,4 @@
-// src/Layouts/MainLayout.jsx
+
 import React from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import Header from "../components/Header";

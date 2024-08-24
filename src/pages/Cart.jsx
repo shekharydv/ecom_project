@@ -9,7 +9,7 @@ const Cart = ({ cartItems }) => {
       .then((data) => setProducts(data));
   }, []);
 
-  // Filter products that are in the cart
+
   const cartProducts = products.filter(product =>
     cartItems.includes(product.id)
   );

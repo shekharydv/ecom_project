@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 
-const ProductDetails = ({ handleAddToCart }) => {
+const ProductDetails = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { handleAddToCart } = useOutletContext();
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${productId}`)
@@ -25,7 +26,7 @@ const ProductDetails = ({ handleAddToCart }) => {
   if (error) return <p className="text-center">{error}</p>;
 
   const addToCart = () => {
-    handleAddToCart(product.id);
+    handleAddToCart(product.id, navigate);
   };
 
   return (
@@ -55,7 +56,7 @@ const ProductDetails = ({ handleAddToCart }) => {
                 </div>
               </div>
             </div>
-            <div className="space-s-4 3xl:pr-48 flex items-center gap-2 border-b border-gray-300 py-8  md:pr-32 lg:pr-12 2xl:pr-32">
+            <div className="space-s-4 3xl:pr-48 flex items-center gap-2 border-b border-gray-300 py-8 md:pr-32 lg:pr-12 2xl:pr-32">
               <div className="group flex h-11 flex-shrink-0 items-center justify-between overflow-hidden rounded-md border border-gray-300 md:h-12">
                 <button
                   className="text-heading hover:bg-heading flex h-full w-10 flex-shrink-0 items-center justify-center border-e border-gray-300 transition duration-300 ease-in-out focus:outline-none md:w-12"
@@ -63,7 +64,7 @@ const ProductDetails = ({ handleAddToCart }) => {
                 >
                   +
                 </button>
-                <span className="duration-250 text-heading flex h-full w-12  flex-shrink-0 cursor-default items-center justify-center text-base font-semibold transition-colors ease-in-out  md:w-20 xl:w-24">
+                <span className="duration-250 text-heading flex h-full w-12 flex-shrink-0 cursor-default items-center justify-center text-base font-semibold transition-colors ease-in-out md:w-20 xl:w-24">
                   1
                 </span>
                 <button className="text-heading hover:bg-heading flex h-full w-10 flex-shrink-0 items-center justify-center border-s border-gray-300 transition duration-300 ease-in-out focus:outline-none md:w-12">

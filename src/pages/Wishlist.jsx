@@ -1,4 +1,4 @@
-// Wishlist.jsx
+
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,6 @@ const Wishlist = ({ wishlistItems }) => {
       });
   }, []);
 
-  // Filter products that are in the wishlist
   const wishlistProducts = products.filter(product =>
     wishlistItems.includes(product.id)
   );

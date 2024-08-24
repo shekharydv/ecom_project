@@ -1,7 +1,6 @@
 import React from "react";
-import { useOutletContext }  from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
 
 const Product = () => {
   const navigate = useNavigate();
@@ -20,13 +19,23 @@ const Product = () => {
   }, []);
 
   const handleProductClick = (productId) => {
-    navigate(`/product/${productId}`); 
+    navigate(`/product/${productId}`);
+  };
+
+  const handleAddToCartClick = (event, productId) => {
+    event.stopPropagation();
+    handleAddToCart(productId);
+  };
+
+  const handleAddToWishlistClick = (event, productId) => {
+    event.stopPropagation();
+    handleAddToWishlist(productId);
   };
 
   return (
     <div className="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4">
       {products.map((product) => (
-        <div key={product.id} className="rounded-md border"  onClick={() => handleProductClick(product.id)}>
+        <div key={product.id} className="rounded-md border" onClick={() => handleProductClick(product.id)}>
           <img
             src={product.image}
             alt={product.title}
@@ -39,14 +48,14 @@ const Product = () => {
             <p className="mt-2 text-gray-500">${product.price}</p>
             <div className="mt-4 space-y-2">
               <button
-                onClick={() => handleAddToCart(product.id)}
+                onClick={(event) => handleAddToCartClick(event, product.id)}
                 type="button"
                 className="w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80"
               >
                 Add to Cart
               </button>
               <button
-                onClick={() => handleAddToWishlist(product.id)}
+                onClick={(event) => handleAddToWishlistClick(event, product.id)}
                 type="button"
                 className="w-full rounded-sm bg-red-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-400"
               >
