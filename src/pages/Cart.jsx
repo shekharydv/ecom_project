@@ -111,6 +111,7 @@ const Cart = ({ cartItems }) => {
                   </button>
                 </div>
               </div>
+              
             </div>
           </ul>
           )}
